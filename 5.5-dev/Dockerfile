@@ -1,9 +1,6 @@
 FROM ubuntu:trusty
 MAINTAINER Elliot Wright <elliot@elliotwright.co>
 
-# Change me!
-ENV DOCKER_HOST 192.168.0.1
-
 # Install PHP
 RUN \
     useradd -u 1000 -m -s /bin/bash php && \
@@ -11,7 +8,7 @@ RUN \
     chown -R php: /opt/www && \
     apt-get update && \
     apt-get install -y language-pack-en-base software-properties-common && \
-    LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php5-5.6 && \
+    LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php5 && \
     apt-get update && \
     apt-get install -y \
         php5 php5-cli php5-common php5-curl php5-dev php5-fpm php5-gd php5-imagick php5-json \
