@@ -24,7 +24,10 @@ RUN \
     sed -i 's/listen.owner\ =\ www-data/listen.owner\ =\ php/g' /etc/php5/fpm/pool.d/www.conf && \
     sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php5/fpm/pool.d/www.conf && \
     sed -i 's/listen\ =\ \/var\/run\/php5-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php5/fpm/pool.d/www.conf && \
-    sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php5/fpm/php-fpm.conf
+    sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php5/fpm/php-fpm.conf && \
+    echo "xdebug.remote_enable = on" >> /etc/php5/mods-available/20-xdebug.ini && \
+    echo "xdebug.remote_connect_back = on" >> /etc/php5/mods-available/20-xdebug.ini && \
+    echo "xdebug.idekey = \"docker\"" >> /etc/php5/mods-available/20-xdebug.ini
 
 EXPOSE 9000
 
