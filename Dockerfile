@@ -1,6 +1,9 @@
 FROM ubuntu:trusty
 MAINTAINER Elliot Wright <elliot@elliotwright.co>
 
+# Change me!
+ENV DOCKER_HOST 192.168.0.1
+
 # Install PHP
 RUN \
     useradd -u 1000 -m -s /bin/bash php && \
@@ -25,10 +28,11 @@ RUN \
     sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php5/fpm/pool.d/www.conf && \
     sed -i 's/listen\ =\ \/var\/run\/php5-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php5/fpm/pool.d/www.conf && \
     sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php5/fpm/php-fpm.conf && \
-    echo "xdebug.remote_enable = on" >> /etc/php5/mods-available/20-xdebug.ini && \
-    echo "xdebug.remote_connect_back = on" >> /etc/php5/mods-available/20-xdebug.ini && \
-    echo "xdebug.idekey = \"docker\"" >> /etc/php5/mods-available/20-xdebug.ini
+    echo "zend_extension = xdebug.so" >> /etc/php5/mods-available/xdebug.ini.template && \
+    echo "xdebug.remote_enable = on" >> /etc/php5/mods-available/xdebug.ini.template && \
+    echo "xdebug.remote_connect_back = on" >> /etc/php5/mods-available/xdebug.ini.template && \
+    echo "xdebug.idekey = \"docker\"" >> /etc/php5/mods-available/xdebug.ini.template
 
 EXPOSE 9000
 
-CMD ["/usr/sbin/php5-fpm"]
+CMD /bin/bash -c "envsubst < /etc/php5/mods-available/xdebug.ini.template > /etc/php5/mods-available/xdebug.ini && /usr/sbin/php5-fpm"
