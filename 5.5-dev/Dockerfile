@@ -11,8 +11,8 @@ RUN \
     LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php5 && \
     apt-get update && \
     apt-get install -y \
-        php5 php5-cli php5-common php5-curl php5-dev php5-fpm php5-gd php5-imagick php5-json \
-        php5-mcrypt php5-memcached php5-mysql php5-xdebug && \
+        php5 php5-cli php5-common php5-curl php5-dev php5-fpm php5-gd php5-imagick php5-intl \
+        php5-json php5-mcrypt php5-memcached php5-mysql php5-xdebug && \
     apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
