@@ -27,11 +27,20 @@ RUN \
     sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i 's/listen\ =\ \/run\/php\/php7.0-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php/7.0/fpm/pool.d/www.conf && \
     sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php/7.0/fpm/php-fpm.conf && \
-    echo "zend_extension = xdebug.so" >> /etc/php/7.0/mods-available/xdebug.ini.template && \
-    echo "xdebug.remote_enable = on" >> /etc/php/7.0/mods-available/xdebug.ini.template && \
-    echo "xdebug.remote_connect_back = on" >> /etc/php/7.0/mods-available/xdebug.ini.template && \
-    echo "xdebug.idekey = \"docker\"" >> /etc/php/7.0/mods-available/xdebug.ini.template
+    echo "opcache.enable = 1" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "opcache.fast_shutdown = 1" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "opcache.interned_strings_buffer = 16" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "opcache.max_accelerated_files = 7963" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "opcache.memory_consumption = 128" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "opcache.revalidate_freq = 0" >> /etc/php/7.0/mods-available/opcache.ini && \
+    echo "zend_extension = xdebug.so" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.remote_enable = on" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.remote_connect_back = on" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.idekey = \"docker\"" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.profiler_enable = 0" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.profiler_output_dir = /opt/www/debug" >> /etc/php/7.0/mods-available/xdebug.ini && \
+    echo "xdebug.profiler_enable_trigger = 1" >> /etc/php/7.0/mods-available/xdebug.ini
 
 EXPOSE 9000
 
-CMD /bin/bash -c "envsubst < /etc/php/7.0/mods-available/xdebug.ini.template > /etc/php/7.0/mods-available/xdebug.ini && /usr/sbin/php-fpm7.0"
+CMD /bin/bash -c "/usr/sbin/php-fpm7.0"
