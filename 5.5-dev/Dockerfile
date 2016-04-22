@@ -41,4 +41,4 @@ RUN \
 
 EXPOSE 9000
 
-CMD /bin/bash -c "envsubst < /etc/php5/mods-available/xdebug.ini.template > /etc/php5/mods-available/xdebug.ini && /usr/sbin/php5-fpm"
+CMD /bin/bash -c "/usr/sbin/php5-fpm"
