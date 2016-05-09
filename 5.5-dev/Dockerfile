@@ -31,7 +31,6 @@ RUN \
     echo "opcache.max_accelerated_files = 7963" >> /etc/php5/mods-available/opcache.ini && \
     echo "opcache.memory_consumption = 128" >> /etc/php5/mods-available/opcache.ini && \
     echo "opcache.revalidate_freq = 0" >> /etc/php5/mods-available/opcache.ini && \
-    echo "zend_extension = xdebug.so" >> /etc/php5/mods-available/xdebug.ini && \
     echo "xdebug.remote_enable = on" >> /etc/php5/mods-available/xdebug.ini && \
     echo "xdebug.remote_connect_back = on" >> /etc/php5/mods-available/xdebug.ini && \
     echo "xdebug.idekey = \"docker\"" >> /etc/php5/mods-available/xdebug.ini && \
