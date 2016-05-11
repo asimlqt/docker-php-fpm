@@ -12,9 +12,9 @@ RUN \
     LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php && \
     apt-get update && \
     apt-get install -y \
-        php7.0 php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-fpm php7.0-gd \
-        php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php-apcu php-imagick php-memcached \
-        php-xdebug && \
+        php7.0 php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-fpm php7.0-gd \
+        php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php7.0-zip php-amqp php-apcu \
+        php-imagick php-memcache php-memcached php-redis php-xdebug && \
     apt-get autoremove && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
