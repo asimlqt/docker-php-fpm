@@ -45,25 +45,26 @@ RUN set -x \
     && chmod +x /opt/php-setup/docker-entrypoint.sh
 
 # Configure PHP
-RUN \
-    sed -i 's/user\ =\ www-data/user\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/group\ =\ www-data/group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/listen.owner\ =\ www-data/listen.owner\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/listen\ =\ \/var\/run\/php5-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php/5.6/fpm/pool.d/www.conf && \
-    sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php/5.6/fpm/php-fpm.conf && \
-    echo "opcache.enable = 1" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "opcache.fast_shutdown = 1" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "opcache.interned_strings_buffer = 16" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "opcache.max_accelerated_files = 7963" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "opcache.memory_consumption = 128" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "opcache.revalidate_freq = 0" >> /etc/php/5.6/mods-available/opcache.ini && \
-    echo "xdebug.remote_enable = on" >> /etc/php/5.6/mods-available/xdebug.ini && \
-    echo "xdebug.remote_connect_back = on" >> /etc/php/5.6/mods-available/xdebug.ini && \
-    echo "xdebug.idekey = \"docker\"" >> /etc/php/5.6/mods-available/xdebug.ini && \
-    echo "xdebug.profiler_enable = 0" >> /etc/php/5.6/mods-available/xdebug.ini && \
-    echo "xdebug.profiler_output_dir = /opt/www/debug" >> /etc/php/5.6/mods-available/xdebug.ini && \
-    echo "xdebug.profiler_enable_trigger = 1" >> /etc/php/5.6/mods-available/xdebug.ini
+RUN set -x \
+    && sed -i 's/user\ =\ www-data/user\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
+    && sed -i 's/group\ =\ www-data/group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
+    && sed -i 's/listen.owner\ =\ www-data/listen.owner\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
+    && sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
+    && sed -i 's/listen\ =\ \/var\/run\/php5-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php/5.6/fpm/pool.d/www.conf \
+    && sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php/5.6/fpm/php-fpm.conf \
+    && sed -i 's/;date.timezone\ =/date.timezone\ =\ Europe\/London/g' /etc/php/5.6/fpm/php.ini \
+    && echo "opcache.enable = 1" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "opcache.fast_shutdown = 1" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "opcache.interned_strings_buffer = 16" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "opcache.max_accelerated_files = 7963" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "opcache.memory_consumption = 128" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "opcache.revalidate_freq = 0" >> /etc/php/5.6/mods-available/opcache.ini \
+    && echo "xdebug.remote_enable = on" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.remote_connect_back = on" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.idekey = \"docker\"" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_enable = 0" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_output_dir = /opt/www/debug" >> /etc/php/5.6/mods-available/xdebug.ini \
+    && echo "xdebug.profiler_enable_trigger = 1" >> /etc/php/5.6/mods-available/xdebug.ini
 
 EXPOSE 9000
 

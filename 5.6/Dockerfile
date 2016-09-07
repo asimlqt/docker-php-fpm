@@ -49,6 +49,7 @@ RUN set -x \
     && sed -i 's/listen.group\ =\ www-data/listen.group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
     && sed -i 's/listen\ =\ \/run\/php\/php5.6-fpm\.sock/listen\ =\ [::]:9000/g' /etc/php/5.6/fpm/pool.d/www.conf \
     && sed -i 's/;daemonize\ =\ yes/daemonize\ =\ no/g' /etc/php/5.6/fpm/php-fpm.conf \
+    && sed -i 's/;date.timezone\ =/date.timezone\ =\ Europe\/London/g' /etc/php/5.6/fpm/php.ini \
     && echo "opcache.enable = 1" >> /etc/php/5.6/mods-available/opcache.ini \
     && echo "opcache.fast_shutdown = 1" >> /etc/php/5.6/mods-available/opcache.ini \
     && echo "opcache.interned_strings_buffer = 16" >> /etc/php/5.6/mods-available/opcache.ini \
