@@ -1,5 +1,5 @@
-Docker PHP Build
-================
+Docker PHP-FPM
+==============
 
 Docker image packaging for a PHP + FPM, designed for local development (via `*-dev` tags), and production environments. Available on the [Docker Hub][1].
 
