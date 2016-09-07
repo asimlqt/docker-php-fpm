@@ -1,23 +1,52 @@
-FROM ubuntu:trusty
-MAINTAINER Elliot Wright <elliot@elliotwright.co>
+FROM ubuntu:xenial
+MAINTAINER Elliot Wright <hello@elliotdwright.com>
 
-# Install PHP
-RUN \
-    useradd -u 1000 -m -s /bin/bash php && \
-    mkdir -p /run/php && \
-    mkdir -p /opt/www && \
-    chown -R php: /opt/www && \
-    apt-get update && \
-    apt-get install -y language-pack-en-base software-properties-common && \
-    LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php && \
-    apt-get update && \
-    apt-get install -y \
-        php7.0 php7.0-bz2 php7.0-cli php7.0-common php7.0-curl php7.0-dev php7.0-fpm php7.0-gd \
-        php7.0-intl php7.0-json php7.0-mcrypt php7.0-mysql php7.0-zip php-amqp php-apcu \
-        php-imagick php-memcache php-memcached php-redis php-xdebug && \
-    apt-get autoremove && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+COPY provisioning/docker-entrypoint.sh /opt/php-setup/docker-entrypoint.sh
+
+ENV PHP_UID 1000
+ENV PHP_GID 1000
+ENV PHP_HOME /home/php
+ENV PHP_WORKDIR /opt/www
+
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        git-core \
+        language-pack-en-base \
+        openssh-client \
+        software-properties-common \
+    && LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        php7.0 \
+        php7.0-apcu \
+        php7.0-bz2 \
+        php7.0-cli \
+        php7.0-common \
+        php7.0-curl \
+        php7.0-dev \
+        php7.0-fpm \
+        php7.0-gd \
+        php7.0-intl \
+        php7.0-json \
+        php7.0-mcrypt \
+        php7.0-mysql \
+        php7.0-xml \
+        php7.0-zip \
+        php-amqp \
+        php-apcu \
+        php-imagick \
+        php-memcache \
+        php-memcached \
+        php-redis \
+        php-xdebug \
+    && apt-get autoremove \
+    && apt-get clean \
+    && rm -rf /var/lib/app/lists/* \
+    && mkdir -p /run/php \
+    && chmod +x /opt/php-setup/docker-entrypoint.sh
 
 # Configure PHP
 RUN \
@@ -42,4 +71,6 @@ RUN \
 
 EXPOSE 9000
 
-CMD /bin/bash -c "/usr/sbin/php-fpm7.0"
+ENTRYPOINT ["/opt/php-setup/docker-entrypoint.sh"]
+
+CMD ["/usr/sbin/php-fpm7.0"]

@@ -42,7 +42,6 @@ RUN set -x \
     && mkdir -p /run/php \
     && chmod +x /opt/php-setup/docker-entrypoint.sh
 
-# Configure PHP
 RUN set -x \
     && sed -i 's/user\ =\ www-data/user\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
     && sed -i 's/group\ =\ www-data/group\ =\ php/g' /etc/php/5.6/fpm/pool.d/www.conf \
