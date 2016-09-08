@@ -34,7 +34,7 @@ else
     echo "    Already exists!"
 fi
 
-echo "==> Updating home and working directory permissions..."
+echo "==> Updating home and working directory permissions recursively..."
 
 chown -R ${PHP_UID}:${PHP_GID} "${PHP_HOME}"
 chown -R ${PHP_UID}:${PHP_GID} "${PHP_WORKDIR}"
