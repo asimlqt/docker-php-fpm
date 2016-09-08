@@ -16,7 +16,8 @@ The following environment variables are available to allow you to configure how 
 Notes
 -----
 
-Currently the default user ID is 1000, for working on Linux machines with a default user; you should however be able to specify any user.
+* Currently the default user ID is 1000, for working on Linux machines with a default user; you should however be able to specify any user.
+* The `*-dev` tags don't try to chown the workdir like the other images. This is to improve startup time of PHP. For development we expect the files to be mounted with the correct UID and GID.
 
 License
 -------
