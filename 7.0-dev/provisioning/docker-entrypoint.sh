@@ -34,10 +34,10 @@ else
     echo "    Already exists!"
 fi
 
-echo "==> Updating home and working directory permissions recursively..."
+echo "==> Updating home and working directory permissions..."
 
-chown -R ${PHP_UID}:${PHP_GID} "${PHP_HOME}"
-chown -R ${PHP_UID}:${PHP_GID} "${PHP_WORKDIR}"
+chown ${PHP_UID}:${PHP_GID} "${PHP_HOME}"
+chown ${PHP_UID}:${PHP_GID} "${PHP_WORKDIR}"
 
 echo "    Done!"
 

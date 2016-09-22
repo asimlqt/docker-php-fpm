@@ -31,6 +31,7 @@ RUN set -x \
         php5.6-imagick \
         php5.6-intl \
         php5.6-json \
+        php5.6-mbstring \
         php5.6-mcrypt \
         php5.6-memcached \
         php5.6-mysql \

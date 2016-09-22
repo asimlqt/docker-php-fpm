@@ -31,6 +31,7 @@ RUN set -x \
         php7.0-gd \
         php7.0-intl \
         php7.0-json \
+        php7.0-mbstring \
         php7.0-mcrypt \
         php7.0-mysql \
         php7.0-xml \
