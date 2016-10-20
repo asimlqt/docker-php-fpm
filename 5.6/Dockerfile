@@ -8,6 +8,11 @@ ENV PHP_GID 1000
 ENV PHP_HOME /home/php
 ENV PHP_WORKDIR /opt/www
 
+# Some common PHP settings...
+ENV PHP_MEMORY_LIMIT 128M
+ENV PHP_POST_MAX_SIZE 8M
+ENV PHP_UPLOAD_MAX_FILESIZE 2M
+
 RUN set -x \
     && apt-get update \
     && apt-get install -y --no-install-recommends \

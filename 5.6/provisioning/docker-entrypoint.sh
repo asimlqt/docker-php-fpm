@@ -41,6 +41,14 @@ chown -R ${PHP_UID}:${PHP_GID} "${PHP_WORKDIR}"
 
 echo "    Done!"
 
+echo "==> Updating some settings..."
+
+sed -i 's|memory_limit\ =.*|memory_limit\ =\ '"${PHP_MEMORY_LIMIT}"'|g' /etc/php/5.6/fpm/php.ini
+sed -i 's|post_max_size\ =.*|post_max_size\ =\ '"${PHP_POST_MAX_SIZE}"'|g' /etc/php/5.6/fpm/php.ini
+sed -i 's|upload_max_filesize\ =.*|upload_max_filesize\ =\ '"${PHP_UPLOAD_MAX_FILESIZE}"'|g' /etc/php/5.6/fpm/php.ini
+
+echo "    Done!"
+
 echo "==> Running CMD..."
 
 cd "${PHP_WORKDIR}"
