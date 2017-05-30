@@ -24,7 +24,7 @@ RUN set -x \
         software-properties-common \
     && LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         php5.6 \
         php5.6-apcu \
         php5.6-cli \
@@ -40,6 +40,7 @@ RUN set -x \
         php5.6-mcrypt \
         php5.6-memcached \
         php5.6-mysql \
+        php5.6-pgsql \
         php5.6-xml \
         php5.6-zip \
     && apt-get autoremove \
