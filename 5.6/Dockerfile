@@ -44,7 +44,7 @@ RUN set -x \
         php5.6-zip \
     && apt-get autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/app/lists/* \
+    && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /run/php \
     && chmod +x /opt/php-setup/docker-entrypoint.sh
 
