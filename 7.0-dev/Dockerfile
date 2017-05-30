@@ -19,7 +19,7 @@ RUN set -x \
         software-properties-common \
     && LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -y --no-install-recommends \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         php7.0 \
         php7.0-apcu \
         php7.0-bz2 \
@@ -34,6 +34,7 @@ RUN set -x \
         php7.0-mbstring \
         php7.0-mcrypt \
         php7.0-mysql \
+        php7.0-pgsql \
         php7.0-xml \
         php7.0-zip \
         php-amqp \
