@@ -45,4 +45,8 @@ echo "==> Running CMD..."
 
 cd "${PHP_WORKDIR}"
 
-exec "$@"
+if [ "${PHP_SHELL}" == "1" ]; then
+    exec gosu php "$@"
+else
+    exec "$@"
+fi
