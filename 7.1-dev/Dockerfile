@@ -31,6 +31,7 @@ RUN set -x \
     && LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        imagemagick \
         php7.1 \
         php7.1-apcu \
         php7.1-bz2 \

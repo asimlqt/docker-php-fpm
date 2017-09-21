@@ -36,6 +36,7 @@ RUN set -x \
     && LC_ALL=en_US.UTF-8 apt-add-repository ppa:ondrej/php \
     && apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        imagemagick \
         php5.6 \
         php5.6-apcu \
         php5.6-cli \
